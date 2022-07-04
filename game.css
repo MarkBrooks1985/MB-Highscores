@@ -48,6 +48,15 @@
     text-align: center;
 }
 
+.hud-countdown {
+    text-align: center;
+    font-size: 2rem;
+}
+
+.hud-timer {
+    text-align: center;
+}
+
 #progressBar {
     width: 20rem;
     height: 4rem;

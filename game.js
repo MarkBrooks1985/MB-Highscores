@@ -4,11 +4,15 @@ const progressText = document.getElementById('progressText');
 const scoreText = document.getElementById('score');
 const progressBarFull = document.getElementById('progressBarFull');
 
+var timeEl = document.querySelector(".hud-timer");
+var secondsLeft = 60;
+
 let currentQuestion = {};
 let acceptingAnwsers = true;
 let score = 0;
 let questionCounter = 0;
 let availableQuestions = [];
+let secondsLeft = [];
 
 let questions = [
     {
@@ -47,8 +51,25 @@ startGame = () => {
     questionCounter = 0;
     score = 0;
     availableQuestions = [ ...questions];
+    setTimeout()
     getNewQuestion();
 }
+
+function setTime() {
+    // Sets interval in variable
+    var timerInterval = setInterval(function() {
+      secondsLeft--;
+      timeEl.textContent = secondsLeft + " seconds left till colorsplosion.";
+  
+      if(secondsLeft === 0) {
+        // Stops execution of action at set interval
+        clearInterval(timerInterval);
+        // Calls function to create and append image
+         return window.location.assign('end.html');
+      }
+  
+    }, 1000);
+  }
 
 getNewQuestion = () => {
 
