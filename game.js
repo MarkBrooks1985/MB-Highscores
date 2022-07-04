@@ -5,7 +5,7 @@ const scoreText = document.getElementById('score');
 const progressBarFull = document.getElementById('progressBarFull');
 
 let currentQuestion = {};
-let acceptingAnwsers = false;
+let acceptingAnwsers = true;
 let score = 0;
 let questionCounter = 0;
 let availableQuestions = [];
@@ -52,6 +52,8 @@ startGame = () => {
 
 getNewQuestion = () => {
 
+    acceptingAnwsers = true;
+
     if(availableQuestions.length === 0 || questionCounter > MAX_QUESTONS) {
         localStorage.setItem('mostRecentScore', score)
         //go to the end page
@@ -71,8 +73,8 @@ progressBarFull.style.width = `${(questionCounter / MAX_QUESTONS) * 100}%`;
     question.innerText = currentQuestion.question;
 
     choices.forEach( choice => {
-        const number = choice.dataset['number'];
-        choice.innerText = currentQuestion['choice + number'];
+        const number = choice.dataset.number;
+        choice.innerText = currentQuestion['choice' + number];
     });
     availableQuestions.splice(questionIndex, 1);
 };
@@ -83,10 +85,9 @@ choices.forEach(choice => {
 
         acceptingAnwsers = false;
         const selectedChoice = e.target;
-        const selectedAnswer = selectedChoice.dataset['number'];
+        const selectedAnswer = selectedChoice.dataset.number;
 
-        const classToApply = 'incorrect';
-          selectedAnswer == currentQuestion.answer ? "correct" : "incorrect";
+        const classToApply = selectedAnswer == currentQuestion.answer ? "correct" : "incorrect";
 
         if(classToApply === 'correct') {
             incrementsScore(CORRECT_BONUS);

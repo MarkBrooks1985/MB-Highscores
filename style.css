@@ -58,9 +58,14 @@ h3 {
     width: 100%;
 }
 
+.end {
+    margin-top: 30rem;
+}
+
 .flex-column {
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .flex-center {

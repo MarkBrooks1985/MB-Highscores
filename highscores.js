@@ -1,5 +1,5 @@
-const highscoresList = document.getElementById('highScoreList');
-const highScores = JSON.parse(localStorage.getiem('highScores')) || [];
+const highscoresList = document.getElementById("highScoreList");
+const highScores = JSON.parse(localStorage.getiem("highScores")) || [];
 
 highscoresList.innerHTML = highScores
 .map( score => {
