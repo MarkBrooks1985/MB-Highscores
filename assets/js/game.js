@@ -12,7 +12,6 @@ let acceptingAnwsers = true;
 let score = 0;
 let questionCounter = 0;
 let availableQuestions = [];
-let secondsLeft = [];
 
 let questions = [
     {
@@ -51,15 +50,15 @@ startGame = () => {
     questionCounter = 0;
     score = 0;
     availableQuestions = [ ...questions];
-    setTimeout()
+    setTime()
     getNewQuestion();
 }
 
 function setTime() {
     // Sets interval in variable
-    var timerInterval = setInterval(function() {
+    let timerInterval = setInterval(function() {
       secondsLeft--;
-      timeEl.textContent = secondsLeft + " seconds left till colorsplosion.";
+      timeEl.textContent = secondsLeft;
   
       if(secondsLeft === 0) {
         // Stops execution of action at set interval
@@ -113,6 +112,10 @@ choices.forEach(choice => {
         if(classToApply === 'correct') {
             incrementsScore(CORRECT_BONUS);
         } 
+
+        if(classToApply === 'incorrect') {
+            secondsLeft = secondsLeft - 5;
+        }
 
         selectedChoice.parentElement.classList.add(classToApply);
         setTimeout(() => {
